@@ -21,7 +21,8 @@ with st.popover("Open popover"):
 
 st.title("Cover Letter Generator")
 
-DEFAULT_TEMPLATE = """You will be writing an extremely effective cover letter for a job candidate applying to a specific role. I will provide you with two key inputs:
+DEFAULT_TEMPLATE = """
+You will be writing a cover letter for a job candidate applying to a specific role. I will provide you with two key inputs:
 
 <candidate_description>
 {{CANDIDATE_DESCRIPTION}}
@@ -31,30 +32,88 @@ DEFAULT_TEMPLATE = """You will be writing an extremely effective cover letter fo
 {{JOB_DESCRIPTION}}
 </job_description>
 
-Please carefully review the candidate's skills, experience, and qualifications detailed in the candidate description. Then study the job description to understand the role and key requirements. Finally, consider the audience who will be reading this cover letter, as described in the audience section. Tailor the style, tone, and content of the letter to be maximally effective for this particular audience.
+Please carefully review the candidate's skills, experience, and qualifications detailed in the candidate description. Then study the job description to understand the role and key requirements. Based on the job description, deduce the likely audience who will be reading this cover letter. Consider factors like the company culture, seniority of the role, and any other relevant context clues. Tailor the style, tone, and content of the letter to be maximally effective for this particular audience.
+
+<rules>
+- IMPORTANT: Only mention skills, experiences, and accomplishments that are explicitly stated in the candidate description. Do not infer or extrapolate qualifications based on the job description or other contextual clues. If the candidate description does not directly say the candidate possesses a certain skill or experience, do not claim that they do.
+- Avoid using cliché or stereotypical cover letter phrases. Aim for an authentic, original voice. 
+- Be as concise as possible. Focus on making a strong impression efficiently, without unnecessary filler or fluff.
+- Strike a balanced tone. Convey the candidate's enthusiasm for the role but avoid coming across as ingratiating or overly effusive.
+</rules>
+
+<guidelines>
+</guidelines>
 
 <brainstorming>
-Based on the candidate's background, the job requirements, and the target audience, brainstorm the most compelling points to include in the cover letter. Consider how to best highlight the candidate's relevant skills and experience to position them as a strong fit for this specific role in a way that will resonate with the audience. Jot down your ideas here.
+Based on the candidate's background, the job requirements, and your deduced target audience, brainstorm the most compelling points to include in the cover letter. Consider how to best highlight the candidate's relevant skills and experience to position them as a strong fit for this specific role in a way that will resonate with the audience. Jot down your ideas here.
 </brainstorming>
 
-Now, write a cover letter tailored for this candidate, job, and audience. The cover letter should:
+Now, write a cover letter tailored for this candidate, job, and deduced audience. Adhere to the <rules> and guidelines provided above. The cover letter should:
 
 - Grab the reader's attention with a strong opening that will appeal to this audience
 - Demonstrate the candidate's fit by connecting their qualifications to the job requirements 
 - Provide specific examples of the candidate's relevant experience and accomplishments
-- Showcase the candidate's enthusiasm for the role and company in a way that feels authentic to the audience
+- Showcase the candidate's enthusiasm for the role and company in a way that feels authentic to the audience without being overly effusive
 - Close with a confident call-to-action that aligns with the audience's likely preferences
 
-Remember, the goal is to make a compelling case for this candidate's fit for this particular role in a way that feels relevant and persuasive to the specific audience. Highlight their most pertinent skills and experience, rather than providing an exhaustive overview. Aim for concise, impactful language that will connect with the reader.
+Remember, the goal is to make a compelling case for this candidate's fit for this particular role in a way that feels relevant and persuasive to the specific audience you deduced from the job description. Highlight their most pertinent skills and experience, rather than providing an exhaustive overview. Aim for concise, impactful language that will connect with the reader.
 
 Please output the full cover letter text inside <cover_letter> tags.
 
-After you have written the cover letter, please provide a brief explanation of your approach inside <approach> tags.
+After you have written the cover letter, please provide a brief explanation of your approach. Discuss how you tailored the content and style for the deduced audience and how you aimed to make a compelling case for the candidate. Put this inside <approach> tags.
 
-Next, review your cover letter and suggest improvements. Implement any changes you feel are necessary to make the cover letter as strong as possible. Once you are satisfied with your final draft, submit the cover letter text inside <final_cover_letter> tags.
+Next, review your cover letter and suggest improvements here. Consider aspects like:
+- Is the opening attention-grabbing and relevant to the audience? 
+- Are the candidate's qualifications clearly connected to the job requirements?
+- Are the examples of experience and accomplishments specific and impactful?
+- Does the enthusiasm feel authentic and appropriate for the audience?
+- Is the call-to-action confident and aligned with audience preferences?
+- Is the language concise and compelling overall?
+Suggest any changes that could make the cover letter even stronger. Put this inside <review> tags.
 
-Finally, provide a brief reflection on your process and the final cover letter inside <reflection> tags.
+Next, implement any changes you feel would improve the cover letter based on your review. Once you are satisfied with your final draft, submit the cover letter text inside <final_cover_letter> tags.
+
+Finally, provide a brief reflection on your process and the final cover letter here. What were the key factors you considered in tailoring your approach? What do you feel are the strongest elements of the final cover letter? Are there any potential weaknesses or areas of uncertainty? Share any final thoughts on the process and product. Put this inside <reflection> tags.
+
+
 """
+
+# DEFAULT_TEMPLATE = """You will be writing an extremely effective cover letter for a job candidate applying to a specific role. I will provide you with two key inputs:
+#
+# <candidate_description>
+# {{CANDIDATE_DESCRIPTION}}
+# </candidate_description>
+#
+# <job_description>
+# {{JOB_DESCRIPTION}}
+# </job_description>
+#
+# Please carefully review the candidate's skills, experience, and qualifications detailed in the candidate description. Then study the job description to understand the role and key requirements. Finally, consider the audience who will be reading this cover letter, as described in the audience section. Tailor the style, tone, and content of the letter to be maximally effective for this particular audience.
+#
+# <brainstorming>
+# Based on the candidate's background, the job requirements, and the target audience, brainstorm the most compelling points to include in the cover letter. Consider how to best highlight the candidate's relevant skills and experience to position them as a strong fit for this specific role in a way that will resonate with the audience. Jot down your ideas here.
+# </brainstorming>
+#
+# Now, write a cover letter tailored for this candidate, job, and audience. The cover letter should:
+#
+# - Grab the reader's attention with a strong opening that will appeal to this audience
+# - Demonstrate the candidate's fit by connecting their qualifications to the job requirements 
+# - Provide specific examples of the candidate's relevant experience and accomplishments
+# - Showcase the candidate's enthusiasm for the role and company in a way that feels authentic to the audience
+# - Close with a confident call-to-action that aligns with the audience's likely preferences
+#
+# Remember, the goal is to make a compelling case for this candidate's fit for this particular role in a way that feels relevant and persuasive to the specific audience. Highlight their most pertinent skills and experience, rather than providing an exhaustive overview. Aim for concise, impactful language that will connect with the reader.
+#
+# Please output the full cover letter text inside <cover_letter> tags.
+#
+# After you have written the cover letter, please provide a brief explanation of your approach inside <approach> tags.
+#
+# Next, review your cover letter and suggest improvements inside <review> tags.
+#
+# Implement any changes you feel are necessary to make the cover letter as strong as possible. Once you are satisfied with your final draft, submit the cover letter text inside <final_cover_letter> tags.
+#
+# Finally, provide a brief reflection on your process and the final cover letter inside <reflection> tags.
+# """
 
 
 DEFAULT_CANDIDATE_DESCRIPTION = """# Erik Nomitch: Professional Summary
