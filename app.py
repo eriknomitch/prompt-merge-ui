@@ -15,11 +15,17 @@ DEFAULT_CANDIDATE_DESCRIPTION = """I am a highly motivated individual with a pas
 
 DEFAULT_JOB_DESCRIPTION = """We are looking for a software engineer to join our team. The ideal candidate will have experience with Python, Java, and SQL. They should also have experience working with large datasets and be comfortable working in a fast-paced environment."""
 
-# Create text areas
-template_text = st.text_area("Jinja2 Template", height=50, value=DEFAULT_TEMPLATE)
-candidate_description = st.text_area("Candidate Description", height=50, value=DEFAULT_CANDIDATE_DESCRIPTION)
+DEFAULT_TEXT_AREA_HEIGHT = 500
+   
+with st.expander("Template", expanded=True):
+    template_text = st.code(DEFAULT_TEMPLATE, language="handlebars")
 
-job_description = st.text_area("Job Description", height=50, value=DEFAULT_JOB_DESCRIPTION)
+# Create text areas
+col1, col2 = st.columns(2)
+with col1:
+    candidate_description = st.text_area("Candidate Description", height=DEFAULT_TEXT_AREA_HEIGHT, value=DEFAULT_CANDIDATE_DESCRIPTION)
+with col2:
+    job_description = st.text_area("Job Description", height=DEFAULT_TEXT_AREA_HEIGHT, value=DEFAULT_JOB_DESCRIPTION)
 
 # Create a button
 button_clicked = st.button("Render")
