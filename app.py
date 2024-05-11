@@ -48,6 +48,12 @@ Now, write a cover letter tailored for this candidate, job, and audience. The co
 Remember, the goal is to make a compelling case for this candidate's fit for this particular role in a way that feels relevant and persuasive to the specific audience. Highlight their most pertinent skills and experience, rather than providing an exhaustive overview. Aim for concise, impactful language that will connect with the reader.
 
 Please output the full cover letter text inside <cover_letter> tags.
+
+After you have written the cover letter, please provide a brief explanation of your approach inside <approach> tags.
+
+Next, review your cover letter and suggest improvements. Implement any changes you feel are necessary to make the cover letter as strong as possible. Once you are satisfied with your final draft, submit the cover letter text inside <final_cover_letter> tags.
+
+Finally, provide a brief reflection on your process and the final cover letter inside <reflection> tags.
 """
 
 
