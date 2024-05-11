@@ -31,23 +31,25 @@ DEFAULT_TEMPLATE = """You will be writing an extremely effective cover letter fo
 {{JOB_DESCRIPTION}}
 </job_description>
 
-Please carefully review the candidate's skills, experience, and qualifications detailed in the candidate description. Then study the job description to understand the role and key requirements.
+Please carefully review the candidate's skills, experience, and qualifications detailed in the candidate description. Then study the job description to understand the role and key requirements. Finally, consider the audience who will be reading this cover letter, as described in the audience section. Tailor the style, tone, and content of the letter to be maximally effective for this particular audience.
 
 <brainstorming>
-Based on the candidate's background and the job requirements, brainstorm the most compelling points to include in the cover letter. Consider how to best highlight the candidate's relevant skills and experience to position them as a strong fit for this specific role. Jot down your ideas here.
+Based on the candidate's background, the job requirements, and the target audience, brainstorm the most compelling points to include in the cover letter. Consider how to best highlight the candidate's relevant skills and experience to position them as a strong fit for this specific role in a way that will resonate with the audience. Jot down your ideas here.
 </brainstorming>
 
-Now, write a cover letter tailored for this candidate and job. The cover letter should:
+Now, write a cover letter tailored for this candidate, job, and audience. The cover letter should:
 
-- Grab the reader's attention with a strong opening 
-- Demonstrate the candidate's fit by connecting their qualifications to the job requirements
+- Grab the reader's attention with a strong opening that will appeal to this audience
+- Demonstrate the candidate's fit by connecting their qualifications to the job requirements 
 - Provide specific examples of the candidate's relevant experience and accomplishments
-- Showcase the candidate's enthusiasm for the role and company
-- Close with a confident call-to-action
+- Showcase the candidate's enthusiasm for the role and company in a way that feels authentic to the audience
+- Close with a confident call-to-action that aligns with the audience's likely preferences
 
-Remember, the goal is to make a compelling case for this candidate's fit for this particular role. Highlight their most pertinent skills and experience, rather than providing an exhaustive overview. Aim for concise, impactful language.
+Remember, the goal is to make a compelling case for this candidate's fit for this particular role in a way that feels relevant and persuasive to the specific audience. Highlight their most pertinent skills and experience, rather than providing an exhaustive overview. Aim for concise, impactful language that will connect with the reader.
 
-Please output the full cover letter text inside <cover_letter> tags."""
+Please output the full cover letter text inside <cover_letter> tags.
+"""
+
 
 DEFAULT_CANDIDATE_DESCRIPTION = """# Erik Nomitch: Professional Summary
 
@@ -87,7 +89,76 @@ Erik Nomitch is a Senior Software Engineer with over a decade of experience spec
 Erik Nomitch is a distinguished figure in the tech industry, leveraging extensive technical skills to innovate and drive advancements in AI and software development.
 """
 
-DEFAULT_JOB_DESCRIPTION = """We are looking for a software engineer to join our team. The ideal candidate will have experience with Python, Java, and SQL. They should also have experience working with large datasets and be comfortable working in a fast-paced environment."""
+DEFAULT_JOB_DESCRIPTION = """# **Software Engineer, Edge**
+
+[Stripe](https://www.linkedin.com/company/stripe/life) · United States
+
+## About the job
+
+Who we are
+
+**About Stripe**
+
+Stripe is a financial infrastructure platform for businesses. Millions of companies - from the world’s largest enterprises to the most ambitious startups - use Stripe to accept payments, grow their revenue, and accelerate new business opportunities. Our mission is to increase the GDP of the internet, and we have a staggering amount of work ahead. That means you have an unprecedented opportunity to put the global economy within everyone's reach while doing the most important work of your career.
+
+**About The Team**
+
+Build the infrastructure powering economic growth.
+
+Stripe’s infrastructure powers businesses all over the world. We process payments, run marketplaces, detect fraud, help entrepreneurs start an internet business from anywhere in the world, build world-class developer-friendly APIs, and more. If you’re an infrastructure engineer here, you’ll get to build distributed systems that are extremely reliable and scale-out horizontally on the cloud. At Stripe we care a very great deal about reliability as our users’ businesses depend on it.
+
+You’ll be on a team that provides a secure, compliant, fast, and reliable infrastructure that connects Stripe’s products to users globally. The Edge team abstracts the underlying complexity of the Internet from our users and own tier-0 mission critical systems like Global Ingress, CDNs (and static assets), DNS and Certificates which power all of Stripe products (Payments, Elements, Connect, Terminal, Radar, Stripe Tax, Usage Billing, and other SaaS and BaaS - Banking as a Service offerings etc.). We power Stripe Frontend, which is used by all Stripe services to allow access from users of the internet. Edge drives Stripe wide initiatives like Multi-region support, Disaster recovery, Data locality, End-to-end (E2E) p50/p95/p99 payment latency, and is on the fore-front of enabling any new business or product line for Stripe. The current stack is built (but not limited to) leveraging AWS Infrastructure, AWS EC2, S3, AWS Elasticache, Auto scaling, AWS Shield, WAF, Distributed services built in GoLang, Load balancers in GoLand, C/C++, Nginx, Tooling in Python, React, JS, and memcached.
+
+The Edge team is part of the High Assurance Engineering organization. The High Assurance Engineering organization is part of the Core Infrastructure organization.
+
+What you’ll do
+
+As a Software Engineer on the Edge team, you will play a pivotal role in optimizing and enhancing the performance, reliability and security of our global Edge infrastructure and collaborate with product teams to design and deliver micro-services which support business needs. You will work at the intersection of cutting-edge technology and real-world impact, collaborating with talented engineers to tackle complex challenges in distributed systems, and networking. You will also build a great customer experience for internal Stripe product teams that rely on the Edge infrastructure to deliver traffic to their services globally and at scale.
+
+**Responsibilities**
+
+- Lead efforts to optimize and enhance the company's edge computing infrastructure, ensuring low-latency, high-performance delivery of payment services to users worldwide through fine-tuning caching strategies, load balancing, and content delivery networks (CDNs) to improve response times and minimize latency.
+- Collaborate with cross-functional teams to scale the company's infrastructure in response to growing demand and evolving business requirements by designing and implementing scalable architectures that can handle spikes in traffic during peak periods, while maintaining high availability and fault tolerance.
+- Lead incident response efforts during security incidents or service disruptions, working closely with internal teams and external partners to investigate and resolve issues in a timely manner and conducting post-mortem analyses to identify root causes and implementing preventive measures to mitigate future risks.
+- Contribute to the design and implementation of robust security architectures for the company's payment systems, incorporating best practices in encryption, access control, and data integrity to protect sensitive customer information and financial transactions.
+- Provide technical leadership and mentorship to junior engineers, helping them develop their skills and expertise in edge computing and high-scale tier-0 mission critical distributed systems.
+- Conduct code reviews, sharing best practices, and fostering a culture of continuous learning and improvement within the team.
+
+Projects you could work on
+
+- Building infrastructure support millions of requests per second at blazing fast performance with least cost spent on infrastructure
+- Achieving 51/2 9s of availability (which means less than 3 mins of downtime in a year!)
+- Support large Synchronous and asynchronous event streaming at the Edge
+- Supporting the most demanding and high customer impacting Stripe products requiring sub-millisecond latency goals
+- Creating a fast and secure platform which is PCI compliant along with reliability SLOs on which critical product teams within Stripe (Payment, Connect, Accounts, Elements, Terminal, and so on..) can have critical dependency on!
+
+Who you are
+
+We're looking for someone who meets the minimum requirements to be considered for the role. If you meet these requirements, you are encouraged to apply. The preferred qualifications are a bonus, not a requirement.
+
+**Minimum Requirements**
+
+- 5+ years of professional experience in a software development role
+- A strong engineering background in building distributed systems at scale, with high reliability
+- Experience with operational excellence and a deep understanding of metrics, alarms and dashboard
+- Experience developing, maintaining and debugging distributed systems
+- Experience using or development of distributed systems in one of the major cloud providers
+
+**Preferred Qualifications**
+
+- Ability to write high quality code (in programming languages like Go, Java, C/C++ etc)
+- Experience in edge computing (ingress, CDNs) and/or networking
+- Experience in Unix shell
+
+It’s not expected that any single candidate would have expertise across all of these areas. For instance, we have wonderful team members who are really focused on their customers’ needs and building amazing user experiences, but didn’t come in with as much systems knowledge.
+
+Hybrid work at Stripe
+
+This role is available either in an office or a remote location (typically, 35+ miles or 56+ km from a Stripe office).
+
+Office-assigned Stripes spend at least 50% of the time in a given month in their local office or with users. This hits a balance between bringing people together for in-person collaboration and learning from each other, while supporting flexibility about how to do this in a way that makes sense for individuals and their teams.
+
+A remote location, in most cases, is defined as being 35 miles (56 kilometers) or more from one of our offices. While you would be welcome to come into the office for team/business meetings, on-sites, meet-ups, and events, our expectation is you would regularly work from home rather than a Stripe office. Stripe does not cover the cost of relocating to a remote location. We encourage you to apply for roles that match the location where you currently or plan to live."""
 
 DEFAULT_TEXT_AREA_HEIGHT = 200
    
